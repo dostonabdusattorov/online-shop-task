@@ -1,24 +1,15 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-export interface CartState {
-  cart: any[];
-  amount: number;
-  totalAmount: number;
-  totalPrice: number;
-}
-
-const initialState: CartState = {
-  cart: [] as any[],
-  amount: 0,
-  totalAmount: 0,
-  totalPrice: 0,
-};
+import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: {
+    cart: [],
+    amount: 0,
+    totalAmount: 0,
+    totalPrice: 0,
+  },
   reducers: {
-    addToCart: (state, action: PayloadAction<any>): any => {
+    addToCart(state, action) {
       const productId = action.payload;
       try {
         const exist = state.cart.find(
@@ -51,7 +42,7 @@ export const cartSlice = createSlice({
         return err;
       }
     },
-    removeFromCart: (state, action: PayloadAction<any>): any => {
+    removeFromCart(state, action) {
       const productId = action.payload;
       try {
         const exist = state.cart.find(

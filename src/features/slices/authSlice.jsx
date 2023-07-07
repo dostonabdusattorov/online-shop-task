@@ -1,21 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface AuthState {
-  user: { name: string; password: string; image: string; authUser: boolean };
-}
-
-const initialState: AuthState = {
-  user: JSON.parse(sessionStorage.getItem("authUser") as string) || {
-    name: "",
-    password: "",
-    image: "",
-    authUser: false,
-  },
-};
-
 export const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: {
+    user: JSON.parse(sessionStorage.getItem("authUser")) || {
+      name: "",
+      password: "",
+      image: "",
+      authUser: false,
+    },
+  },
   reducers: {
     login(state, action) {
       state.user = action.payload;

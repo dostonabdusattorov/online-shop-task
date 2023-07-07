@@ -1,18 +1,17 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { storeData } from "../../assets/data/dummyData";
 
 export const productSlice = createSlice({
   name: "products",
   initialState: {
     filteredProducts:
-      JSON.parse(sessionStorage.getItem("filteredData") as string) || storeData,
+      JSON.parse(sessionStorage.getItem("filteredData")) || storeData,
     singleProduct:
-      JSON.parse(sessionStorage.getItem("singleProduct") as string) ||
-      storeData,
+      JSON.parse(sessionStorage.getItem("singleProduct")) || storeData,
     error: false,
   },
   reducers: {
-    filterProducts: (state, action: PayloadAction<any>): any => {
+    filterProducts(state, action) {
       try {
         const filter = storeData.filter(
           (product) => product.type === action.payload
@@ -25,10 +24,10 @@ export const productSlice = createSlice({
         return err;
       }
     },
-    singleProduct: (state, action: PayloadAction<any>): any => {
+    singleProduct(state, action) {
       try {
         const oneProduct = state.filteredProducts.filter(
-          (product: any) => product.id === action.payload
+          (product) => product.id === action.payload
         );
         state.singleProduct = oneProduct;
         const savedState = JSON.stringify(oneProduct);
@@ -37,10 +36,10 @@ export const productSlice = createSlice({
         return err;
       }
     },
-    filterGender: (state, action: PayloadAction<any>): any => {
+    filterGender(state, action) {
       try {
         const gender = state.filteredProducts.filter(
-          (product: any) => product.gender === action.payload
+          (product) => product.gender === action.payload
         );
         state.error = false;
         state.filteredProducts = gender;
@@ -57,9 +56,9 @@ export const productSlice = createSlice({
         return err;
       }
     },
-    sortByPrice: (state): any => {
+    sortByPrice(state) {
       try {
-        const price = state.filteredProducts.sort((a: any, b: any) =>
+        const price = state.filteredProducts.sort((a, b) =>
           a.price > b.price ? -1 : 1
         );
         state.filteredProducts = price;
@@ -80,9 +79,9 @@ export const productSlice = createSlice({
         return err;
       }
     },
-    filterByColor: (state, action: PayloadAction<any>): any => {
+    filterByColor(state, action) {
       try {
-        const color = state.filteredProducts.filter((product: any) =>
+        const color = state.filteredProducts.filter((product) =>
           product.color.includes(action.payload)
         );
         state.error = false;
@@ -100,9 +99,9 @@ export const productSlice = createSlice({
         return err;
       }
     },
-    filterBySize: (state, action: PayloadAction<any>): any => {
+    filterBySize(state, action) {
       try {
-        const size = state.filteredProducts.filter((product: any) =>
+        const size = state.filteredProducts.filter((product) =>
           product.size.includes(action.payload)
         );
         state.error = false;
