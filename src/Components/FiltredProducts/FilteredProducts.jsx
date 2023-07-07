@@ -37,7 +37,7 @@ const FilteredProducts = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="">
+    <div className="container">
       <div className="pt-16">
         <div className="pl-14">
           <h1 className="text-gray-600 text-4xl font-inter font-bold tracking-normal leading-none">

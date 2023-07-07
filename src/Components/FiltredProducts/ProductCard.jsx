@@ -16,7 +16,7 @@ const ProductCard = ({ id, name, text, img, price, colors }) => {
 
   return (
     <Link to={`/filteredProducts/${type}/` + id}>
-      <Card className="w-96" onClick={() => dispatch(singleProduct(id))}>
+      <Card className="w-92" onClick={() => dispatch(singleProduct(id))}>
         <CardHeader color="blue" className="relative h-96">
           <img src={img} alt="img-blur-shadow" className="h-full w-full" />
         </CardHeader>
